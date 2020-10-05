@@ -1,0 +1,38 @@
+//check Abundant Number 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+
+int getSum(int n) 
+{ 
+	int sum = 0;  
+	for (int i=1; i<=sqrt(n); i++) 
+	{ 
+		if (n%i==0) 
+		{ 
+			// If divisors are equal,take only one 
+			// of them 
+			if (n/i == i) 
+				sum = sum + i; 
+
+			else // Otherwise take both 
+			{ 
+				sum = sum + i; 
+				sum = sum + (n / i); 
+			} 
+		} 
+	} 
+
+	sum = sum - n; 
+	return sum; 
+} 
+bool checkAbundant(int n) 
+{ 
+	return (getSum(n) > n); 
+} 
+int main() 
+{ 
+	checkAbundant(12)? cout << "YES\n" : cout << "NO\n"; 
+	checkAbundant(15)? cout << "YES\n" : cout << "NO\n"; 
+	return 0; 
+} 
